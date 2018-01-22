@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "remote_state" {
-  bucket = "${var.prefix}-remote-state-${var.environment}"
+  bucket = "${var.prefix}-remote-state"
 
   versioning {
     enabled = true
@@ -10,7 +10,8 @@ resource "aws_s3_bucket" "remote_state" {
   }
 
   tags {
-    Name        = "${var.prefix}-remote-state-${var.environment}"
-    Environment = "${var.environment}"
+    Name        = "${var.prefix}-remote-state"
+    Environment = "${terraform.workspace}"
+    Service     = "${var.prefix}"
   }
 }
